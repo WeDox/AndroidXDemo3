@@ -3,6 +3,7 @@ package com.onedream.androidxdemo3.framework.http.base
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.onedream.androidxdemo3.framework.http.custome.BodyOut
+import com.onedream.androidxdemo3.framework.utils.system.LogHelper
 
 /**
  * @author jdallen
@@ -46,11 +47,15 @@ open class BaseViewModel : ViewModel() {
             }*/
             else -> {
                 if(e.javaClass.simpleName.equals("JobCancellationException")){//JobCancellationException异常 不处理
-
+                    printLog("JobCancellationException异常，只打印不回调")
                 }else {
                     onError("未知异常${e.toString()}" + "那你哈==" + e.javaClass.simpleName)
                 }
             }
         }
+    }
+
+    private fun printLog(content: String) {
+        LogHelper.e("ATU", content)
     }
 }
