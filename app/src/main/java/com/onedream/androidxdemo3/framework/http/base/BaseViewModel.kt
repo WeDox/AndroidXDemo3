@@ -41,11 +41,15 @@ open class BaseViewModel : ViewModel() {
             is java.net.ConnectException -> {
                 onError("网络链接失败")
             }
-            // is kotlinx.coroutines.JobCancellationException ->{//JobCancellationException中断异常 todo 后期过滤掉这个异常，不必处理
+           /* is kotlinx.coroutines.JobCancellationException ->{//JobCancellationException异常 todo 后期完善过滤掉这个异常，不必处理
 
-            //  }
+            }*/
             else -> {
-                onError("未知异常${e.toString()}")
+                if(e.javaClass.simpleName.equals("JobCancellationException")){//JobCancellationException异常 不处理
+
+                }else {
+                    onError("未知异常${e.toString()}" + "那你哈==" + e.javaClass.simpleName)
+                }
             }
         }
     }
