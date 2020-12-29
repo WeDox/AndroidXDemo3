@@ -58,7 +58,7 @@ class RandomPoetryActivity : BaseActivity() {
         })
 
         randomPoetryViewModel.getListDataByPageNum {
-            printLog("回调$it")
+            printLog(it)
         }
     }
 
